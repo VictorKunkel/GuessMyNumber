@@ -24,7 +24,7 @@ function numberWidth(text) {
   document.querySelector('.number').style.width = text;
 }
 
-document.querySelector('.check').addEventListener('click', function () {
+function exec() {
   let guess = Number(document.querySelector('.guess').value);
 
   if (!guess) {
@@ -48,9 +48,9 @@ document.querySelector('.check').addEventListener('click', function () {
       textContentScore(0);
     }
   }
-});
+}
 
-document.querySelector('.again').addEventListener('click', function () {
+function reset () {
   score = 20;
   secretNumber = Math.trunc(Math.random() * 20) + 1;
   textContentMessage('Start Guessing...');
@@ -59,4 +59,24 @@ document.querySelector('.again').addEventListener('click', function () {
   backgroundColor('#222');
   numberWidth('15rem');
   document.querySelector('.guess').value = '';
+}
+
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Enter') {
+    exec();
+  }
+});
+
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape') {
+    reset();
+  }
+})
+
+document.querySelector('.check').addEventListener('click', function () {
+  exec();
+});
+
+document.querySelector('.again').addEventListener('click', function () {
+  reset();
 });
